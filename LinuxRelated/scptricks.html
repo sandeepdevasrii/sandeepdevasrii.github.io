@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content='width=450'>
+  </head>
+
+  <body bgcolor="powderblue">
+    <h1 align="center"> How to use scp (secure copy) command in linux </h1>
+    <p>
+      Copying fies between (to and from) local and remote computers running on linux can be done using <code>scp</code>
+      command.<br/><br/>
+      Syntax:<br/><br/>
+      <u>Copying a file From Remote Machine to Local Machine</u><br/>
+         <pre>scp username@ip_addr:/exact/path/to/file localfileName</pre>
+         where, <code>username</code> is your user name at the remote machine, <code>ip_addr</code> is the IP address of the
+remote machine.<br/><br/>
+      <u>Copying a directory (using <code>-r</code> option) From Remote Machine to Local Machine</u><br/>
+         <pre>scp -r username@ip_addr:/exact/path/to/dir localdir</pre><br/>
+         where, <code>username</code> is your user name at the remote machine, <code>ip_addr</code> is the IP address of the
+remote machine.<br/><br/>
+      <u>Copying a file From Local Machine to Remote Machine</u><br/>
+         <pre>scp localfileName username@ip_addr:/exact/path/to/RemoteFile </pre><br/>
+         where, <code>username</code> is your user name at the remote machine, <code>ip_addr</code> is the IP address of the
+remote machine.<br/><br/>
+      <u>Copying a directory (using <code>-r</code> option) From Local Machine to Remote Machine</u><br/>
+         <pre>scp -r localDir username@ip_addr:/exact/path/to/RemoteDir </pre><br/>
+         where, <code>username</code> is your user name at the remote machine, <code>ip_addr</code> is the IP address of the
+remote machine.<br/><br/>
+
+       
+    </p> 
+  </body>
+</html>
+

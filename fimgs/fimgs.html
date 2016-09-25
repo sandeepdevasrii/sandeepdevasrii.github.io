@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>fim image viewer and fimgs pdf viewer</title>
+    <meta name="viewport" content='width=450'>
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true } });
+    </script>
+    <script type="text/x-mathjax-config"> 
+      MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+    </script>
+  </head>
+
+  <body bgcolor="powderblue">
+    <h1 align="center"> <code>fim</code> image viewer and <code>fimgs</code> pdf viewer </h1>
+      <p>
+        <code>fim</code> and <code>fimgs</code> are respectively the image viewer and pdf reader programs which can be used
+        directly from a linux console like tty1. Most of the image viewers and pdf rendering tools are gui based, and hence
+        require some graphical Desktop environment for running these tools. For example, if you try running the commonly used
+        <b>Evnice</b> pdf rendering tool from tty11, you will get an error message "Cannot open display", which is obvious as tty1
+        is just a linux console without X desktop environment, which cannot run X based programs. However, <code>fim</code> and
+        <code>fimgs</code> are two tools which can run from a linux console and still can display images or render pdf files directly on
+        the linux console..!! <code>fim</code> and <code>fimgs</code> are the improved versions of <code>fib</code> and <code>fbgs</code>
+        utilities available on most (at least on ubuntu) of the linux repos which are functionality same as <code>fim</code> and
+        <code>fimgs</code>. Unlike <code>fib</code> and <code>fbgs</code>, <code>fim</code> and <code>fimgs</code> have several improved
+        features like vim like keybindings etc. If you are addicted to using only the linux console, these little utilities might be of
+        great help. For example, if you use LateX to typeset a pdf document using vim editor, you may like to use the tty1 for doing the
+        same, and you might want to compile the LateX source and see the output. If you use these tools, you don't have to switch back to
+        the graphical Desktop environment to see the generated pdf file. Similary, if you are writing an image processing code using
+        C++ and openCV, you may prefer to open some image, process it and store the results. Using these utilities, you can directly see
+        the processed result from the linux console rather than switching to the graphical Desktop environment and using some image viewer
+        to see the output. These little tools can be downloaded and installed from the following link (Installation instructions included
+        with the source code is self explanatory and the required dependencies can be installed without much hassle).<br/>
+        <a href="http://www.nongnu.org/fbi-improved/">Link to the homepage of <code>fim</code> and <code>fimgs</code></a> 
+      </p>
+  </body>
+</html>
+

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>How to configure gitit personal wiki</title>
+    <meta name="viewport" content='width=450'>
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+      MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']], processEscapes: true } });
+    </script>
+    <script type="text/x-mathjax-config"> 
+      MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "AMS" } } });
+    </script>
+  </head>
+
+  <body bgcolor="powderblue">
+    <h1 align="center"> Setting up Gitit personal wiki</h1>
+      <p>
+	<a href=https://github.com/jgm/gitit>Gittit</a> is a personal wiki (in fact, more than a personal wiki) which can be used
+to keep a record of our day to day activity, lab reports, information about the research papers we read etc. Such a wiki is of
+greatest importance if one wants to keep a track of one's day to day activities and other important stuffs in an electronic format,
+i.e., in our personal computer or smart phone etc. My research for finding such a useful wiki software culminated in <b>gitit</b>
+wiki software written using Haskell platform. In spite of a large number of wiki softwares available with hundreds of attractive
+features varying from each other (A comparison of different wiki tools and their corresponding features is available at this
+<a href=http://www.wikimatrix.org/>link</a>), my long eterm quest for getting the <b>right wiki software</b> has always addressed
+the need of following features which I count to be <i>necessary</i> for my wiki software.
+      <ol>
+        <li>Wiki should be able to be opened for <i>reading/editing/adding wiki pages</i>, directly in all common browsers. </li>
+        <li>Wiki should be able to opened remotely over LAN (not internet) for reading or editing in a remote browser.</li>
+        <li>Wiki should support restricted access. Owner should be able to decide who can read/modify the contents.</li>
+        <li>Wiki should support direct html editing if needed. Additional formats other than html are mostly welcomed..!!</li>
+        <li>Most importantly, wiki should support LaTex based math rendering in some or the other way (may be mathjax ?)</li>
+        <li> and some more which I do not remember for the time being..!! </li>
+      </ol>
+Gitit meets all these requirements. We can install it on our PC and use it for logging our day to day activity reports, or some
+important notes to be remembered etc. etc. If gitit is running on our PC, we can access it from other PCs on the same LAN and the
+read/modify access can be controlled through setting a security question. Gitit supports Mathjax for rendering math symbols and
+equations. Configuring Mathjax is a bit tricky, if we need full featured LaTex support such as automatic equation numbering etc.,
+but still can be done as we are going to see next.
+<h3> Downloading gitit </h3>
+Gitit can be downloaded from this <a href=https://github.com/jgm/gitit>link</a>.
+<h3> Installation </h3>
+We will not describe here the detailed steps for installing gitit as it is already available from the github page from
+which we can download gitit. Please see the README.md available at this <a href=instructions://github.com/jgm/gitit>link</a>.
+<h3> Configuring gitit </h3>
+<ol>
+<li><h4> Getting Mathjax working</h4></li>
+Following are the step by step instructions for configuring Mathjax for LaTex based math rendering.<br /><br />
+If you plan to use Mathjax available directly from the Mathjax server (if you don't want to keep your own local copy of Mathjax),
+then follow the below given steps. Note that you cannot enable the equation auto numbering feature if you follow this method.
+<ul>
+<li> Go to the gitit installation directory. If gitit was installed from the linux repository, then this directory will most
+probably be <code>/usr/share/gitit</code>. If gitit was installed using
+<code>cabal</code>, then the installation directory will probably be <code>~/.cabal/share/gitit-XXXX</code>, where,
+<code>XXXX</code> is the gitit version number.</li>
+<li>Move to the directory named <code>data</code> and open the <code>default.conf</code> file for editing (You may need root
+permissions if gitit was installed in <code>/usr/share</code>).</li>
+<li> Find the line starting with <code>math:</code> and uncomment if it is already commented. Edit this line so that it looks like
+<code>math: mathjax</code>.</li>
+<li>Find and uncomment (if commented) the line starting with <code>mathjax-script:</code> and edit it as
+<code>mathjax-script: http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML </code>.</li>
+</ul>
+Now you can use LaTex for rendering math symbols and equations in your wiki pages. Inline math should be enclosed in single
+dollars as in the case of LaTex, whereas, display math should be enclosed in double dollars.<br /> 
+Example of inline math: <code>$\alpha$</code><br  /> 
+Example of display math:
+<pre><code>
+$$
+\mathbf{A}\mathbf{x}=\mathbf{b}
+$$
+</code></pre>
+Note that, when Mathjax is used directly from the Mathjax server, we have to use a little piece of javascript code to configure the
+Mathjax features such as equation autonumbering. That's how webpages configure Mathjax. I have previously written an <a href=
+https://sandeepdevasrii.github.io/MathJaxRelated/mathjaxinfo.html>article</a> which describes how to use Mathjax in github
+webpages. But, as gitit does not provide (at least I don't know) a feature for using this javascript code for configuring Mathjax,
+we cannot configure some of the Mathjax features such as equation auto numbering etc., if you opt the above mentioned steps for
+configuring Mathjax.
+<br /><br />
+If you wish to use a local copy of Mathjax so that you can configure Mathjax with the locally available configuration files,
+please follow the below given steps for configuration. Note that the following steps will run a mini webserver for serving the
+Mathjax.js file for gitit wiki. Mini webserver is written in Perl and is really "mini" in the sense that it can only be used for a
+very very limited set of tasks (such as file serving) among a wide variety of tasks that can be done with a real http server.
+<ul>
+<li> Go to the gitit installation directory. If gitit was installed from the linux repository, then this directory will most
+probably be <code>/usr/share/gitit</code>. If gitit was installed using
+<code>cabal</code>, then the installation directory will probably be <code>~/.cabal/share/gitit-XXXX</code>, where,
+<code>XXXX</code> is the gitit version number.</li>
+<li>Move to the directory named <code>data</code> and open the <code>default.conf</code> file for editing (You may need root
+permissions if gitit was installed in <code>/usr/share</code>).</li>
+<li> Find the line starting with <code>math:</code> and uncomment if it is already commented. Edit this line so that it looks like
+<code>math: mathjax</code>.</li>
+<li>Find and uncomment (if commented) the line starting with <code>mathjax-script:</code> and edit it as
+<code>mathjax-script: http://localhost:1234/Mathjax.js?config=default</code></li>.
+<li>Download the <a href=http://docs.mathjax.org/en/latest/installation.html>latest version</a> of Mathjax and extract the downloaded zip archive</li>
+<li>From the root directory of the unzipped Mathjax source files, move the directory named <code>config</code></li>
+<li>Edit the default.js file to modify the line containing <code>autonumber: none</code> to <code>autonumber: AMS</code></li>
+<li>Similarly, make sure that the line <code>['$','$'],</code> appearing immediately after the line <code>inlineMath: </code> is
+uncommented.</li>
+<li>Copy the Perl source code for mini webserver from <a href=http://www.wellho.net/resources/ex.php4?item=p402/miniserver.pl>this
+page</a> and save it as <code>miniserver.pl</code> in the root directory of the unzipped Mathjax source archive.</li>
+<li> Find out the line starting with <code>my $DOCUMENT_ROOT </code> in <code>miniserver.pl</code> and edit this line as
+<code>my $DOCUMENT_ROOT =  "/path/to/Mathjax/root/directory";</code></li>
+<li>Now create and save a bashscript file named <code>startwiki.sh</code> with the following contents
+<pre><code>
+#! /bin/bash
+cd ~/
+gitit &
+~/path/to/Mathjax/root/directory/miniserver.pl 1234
+</code></pre></li>
+<li>Now you can start your gitit wiki by issuing the command <code>./startwiki.sh</code> in the terminal.</li>
+<li>The above command (<code>./startwiki</code>) assumes that the command is issued from the directory where the bash script is
+stored.</li>
+<li>If you want the script to be started regardless of the directory you are in, copy the <code>startwiki.sh</code> file into the
+<code>/bin</code> directory using the command <code>sudo cp startwiki.sh /bin/startwiki</code>.</li>
+</ul>
+The above procedure assumes that you run your wiki locally on your PC. If you want to access your wiki from a remote computer and
+if you want your wiki pages with math contents to be rendered propoerly, follow the additional steps given below:
+<ul>
+<li>Make a copy of the file <code>default.conf</code> mentioned above in the same directory where it was originally saved</li>
+<li>Rename the copy of <code>default.conf</code> as <code>defaultRemote.conf</code></li>
+<li>Find and uncomment (if commented) the line starting with <code>mathjax-script: </code> and edit it as <code>mathjax-script:
+http://ip-address-of-your-pc:1234/Mathjax.js?config=default</code></li>
+<li> Now edit the above mentioned bash script as follows:
+<pre><code>
+#! /bin/bash
+cd ~/
+if [ -n "$1" ]; then
+   if [ "$1" = r ]; then
+      gitit -f /path/to/defaultRemote.conf &
+   fi 
+else
+   gitit & 
+fi
+~/path/to/Mathjax/root/directory/miniserver.pl 1234
+</code></pre></li>
+<li>Now you can start your wiki by issuing the command <code>startwiki</code> (assuming that the bash script file
+<code>startwiki.sh</code> is copied to the <code>/bin</code> directory) if you want to run your wiki locally, and, start the wiki
+with command <code>startwiki r</code> if you want to run the wiki from a remote machine.</li>
+<li>In line math can be obtained by enclosing within single dollars, whereas, display math should be enclosed in double dolloars.
+Numbered equations can be written with <code>/begin{equation}.../end{equation}</code> as in the case of LaTex.</li>
+<li>Equation arrays and <code>/begin{align}.../end{align}</code> environments can also be used in the same way as they are used in
+LaTex.</li>
+</ul>
+The above procedure for configuring Mathjax assumes that your wiki root directory is same as your home directory. If you want your
+wiki to be at some other directory, appropriately edit the line <code>cd ~/</code> in the bash script to point to your wiki root
+directory. 
+</ol>
+      </p> 
+  </body>
+</html>
+

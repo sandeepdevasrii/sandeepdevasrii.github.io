@@ -141,7 +141,41 @@ LaTex.</li>
 </ul>
 The above procedure for configuring Mathjax assumes that your wiki root directory is same as your home directory. If you want your
 wiki to be at some other directory, appropriately edit the line <code>cd ~/</code> in the bash script to point to your wiki root
-directory. 
+directory.
+<li><h3> Editing Wiki Pages </h3></li> 
+Detailed instructions describing how to edit the wiki pages can be seen on the wiki once it is started. On the left pane, there
+are several useful links such as help, list of all pages etc. Help page describes several topics from which we can learn how to
+create and modify pages. Editing the wiki requires you to be logged in as a registered user. If you haven't registered, wiki
+provides an option for new user registration in which you can register your user name and password. Gitit stores the list of
+registered users and their passwords (in encrypted from). Now you can login with your user name and password, and, edit any of the
+wiki pages as you need.<br />
+<li><h3> Restricting Access </h3>
+Once started, wiki can be accessed from the browser by navigating to the address <code>localhost:5001</code> (This is the default
+address and port, you can change it in the <code>default.conf</code> file). Note that anyone with a PC connected to the same LAN
+to which your PC that runs the wiki is connected can access the wiki by using the above mentioned address. If you have created a
+user account in gitit, you might have noticed that anyone can create a user account and start editing your wiki pages. In other
+words, anyone whose PC is on the same LAN can create a user account and edit your wiki pages...!!. Though this might be a
+desirable feature in some case, you might also want to restrict the access to your wiki in many cases. In order to restrict others
+from creating their own user accounts on your wiki, follow the below given steps.
+<ul>
+<li>Open the <code>default.conf</code> file stored in <code>gitit/root/directory/data/</code> for editing (depending
+on where this file is stored, you may require root permissions) and find out the line starting with <code>access-question:
+</code></li>
+<li> Set a security question of your choice by editing this line as <code>access-question: Your question</code>. In the next line,
+you can set the answer for this security question by editing the line as <code>access-question-answer: your answer</code></li>.
+<li>Now, if someone attempts to create a user account on your wiki, the answer to the security question will also need to be filled
+apart from their required user names and passwords. User account will not be created as long as they do not provide the correct answer 
+for the security question that you have set as mentioned above.</li>
+<li>Note that the above mentioned procedure only prevents others from 'creating a user account' on your wiki for editing the wiki
+pages, they can still read your wiki.</li> 
+</ul> 
+If you want to prevent other users from reading/editing your wiki pages, follow the below given steps:
+<ul>
+<li>Find out the line starting with <code>require-authentication: </code> in the <code>default.conf</code> file.</li>
+<li>Edit this line as <code>require-authentication: read</code> to prevent others from reading/editing your wiki pages, and 
+<code>require-authentication: modify</code> for giving open access for reading, but restricted access (with user account) for
+editing.</li>
+</ul>
 </ol>
       </p> 
   </body>

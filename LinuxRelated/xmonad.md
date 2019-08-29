@@ -1,7 +1,3 @@
-----
-title: test
-----
-
 # Keyboard Shortcuts for Xmonad Tiling Window Manager
 
 1. `Alt+Shift+Retrun` opens a new terminal. Initially, the system will show a blank screen after login. Use this shortcut to start tiling terminals.

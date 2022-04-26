@@ -176,6 +176,11 @@ If you want to prevent other users from reading/editing your wiki pages, follow 
 <code>require-authentication: modify</code> for giving open access for reading, but restricted access (with user account) for
 editing.</li>
 </ul>
+<li><h3> Changing the default Front Page </h3>
+Gitit will create a default Front Page when a wiki is first created. This file is named "Front Page.page", and can be found in the folder named "wikidata".
+After you login for the first time, you can create a new page which you want to use as your default front page (you can give any page name other than "From Page").
+The new page which you have created can be made the default front page in the config file. Change the config file to reflect this and start gitit with the
+command "gitit -f confFile.conf". Now, the default front page will be the one that you have created.
 </ol>
       </p> 
   </body>
